@@ -33,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        versions: ${{ fromJSON(needs.mapped-files.outputs.matrix) }}
+        versions: ${{ fromJSON(needs.get-changed.outputs.matrix) }}
     steps:
       - name: echome
-        run: echo "version ${{ matrix.version }}"
+        run: echo "version ${{ matrix.versions }}"
 
 
 
