@@ -25,9 +25,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
+        name: Get version
+        run: |
+          VER=$(cat app1/VERSION)
+          echo "VERSION = $VER"
+      -
         name: Build and push
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:app1"
           push: true
-          tags: paulkm/app1:latest
+          tags: paulkm/app1:$VER
