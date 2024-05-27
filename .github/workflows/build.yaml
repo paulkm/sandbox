@@ -32,6 +32,7 @@ jobs:
           echo "matrix=$DATA" >> "$GITHUB_OUTPUT"
   run-matrix:
     needs: get-changed
+    if: needs.get-changed.outputs.matrix != '[]'
     runs-on: ubuntu-latest
     strategy:
       matrix:
