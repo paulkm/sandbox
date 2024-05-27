@@ -48,6 +48,11 @@ jobs:
           VER=$(cat ${CTX}/VERSION)
           echo "VERSION=$VER" >> $GITHUB_ENV
       -
+        name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"      
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
