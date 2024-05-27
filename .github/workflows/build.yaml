@@ -22,10 +22,9 @@ jobs:
           json: true
           write_output_files: true
       -
-       name: Verify the contents of the .github/outputs/added_files.json file
-       run: |
-         cat .github/outputs/added_files.json
-      - 
+        name: Verify the contents of the .github/outputs/added_files.json file
+        run: |
+          cat .github/outputs/added_files.json
   docker:
     runs-on: ubuntu-latest
     steps:
