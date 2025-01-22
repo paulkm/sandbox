@@ -53,6 +53,18 @@ jobs:
           VER=$(cat ${CTX}/VERSION)
           echo "VERSION=$VER" >> $GITHUB_ENV    
       -
+        name: Set up image name
+        # Conditionally set the image name to use.
+        env:
+          CTX: ${{ matrix.versions }}
+        run: |
+          if [ $CTX == 'app1' ]
+          then
+            echo "IMAGE=my-$CTX-image" >> $GITHUB_ENV
+          else
+            echo "IMAGE=$CTX" >> $GITHUB_ENV
+          fi
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
@@ -74,6 +86,6 @@ jobs:
           context: "{{defaultContext}}:${{ matrix.versions }}"
           push: true
           tags: |
-            paulkm/${{ matrix.versions }}:${{ env.VERSION }}
-            paulkm/${{ matrix.versions }}:latest
+            paulkm/${{ env.IMAGE }}:${{ env.VERSION }}
+            paulkm/${{ env.IMAGE }}:latest
 
